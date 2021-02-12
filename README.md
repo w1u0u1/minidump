@@ -1,2 +1,2 @@
 # minidump
-Custom implementation of DbgHelp's MiniDumpWriteDump function. Uses static syscalls to replace low-level functions like NtReadVirtualMemory.
+This project based on https://github.com/rookuu/BOFs, big thanks to rookuu
