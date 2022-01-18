@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="syscall.h">
+    <ClInclude Include="syscalls.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="minidump.h">
@@ -23,12 +23,15 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <MASM Include="syscall.asm">
+    <MASM Include="syscalls_stub.asm">
       <Filter>Source Files</Filter>
     </MASM>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="minidump.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="syscalls.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

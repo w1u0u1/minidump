@@ -81,13 +81,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="minidump.c" />
+    <ClCompile Include="syscalls.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="syscall.h" />
+    <ClInclude Include="syscalls.h" />
     <ClInclude Include="minidump.h" />
   </ItemGroup>
   <ItemGroup>
-    <MASM Include="syscall.asm">
+    <MASM Include="syscalls_stub.asm">
       <FileType>Document</FileType>
     </MASM>
   </ItemGroup>

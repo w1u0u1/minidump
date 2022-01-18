@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <tlhelp32.h>
 #include <dbghelp.h>
-#include "syscall.h"
+#include "syscalls.h"
 #include "minidump.h"
 #pragma comment(lib, "dbghelp.lib")
 #pragma comment(lib, "psapi.lib")
@@ -504,8 +504,8 @@ BOOL MiniDumpWriteDumpA(HANDLE hProcess, DWORD pid, HANDLE hFile)
 
 void EnableDebugPriv()
 {
-	HANDLE hToken;
-	TOKEN_PRIVILEGES tkp;
+	HANDLE hToken = NULL;
+	TOKEN_PRIVILEGES tkp = { 0 };
 
 	NTSTATUS status = NtOpenProcessToken(NtCurrentProcess(), TOKEN_QUERY | TOKEN_ADJUST_PRIVILEGES, &hToken);
 	if (status != STATUS_SUCCESS)
@@ -545,7 +545,10 @@ HANDLE GetProcessHandle(DWORD dwPid)
 
 	status = NtOpenProcess(&hProcess, PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, &ObjectAttributes, &uPid);
 	if (hProcess == NULL)
+	{
+		printf("NtOpenProcess error 0x%08x\n", status);
 		return NULL;
+	}
 
 	return hProcess;
 }
@@ -583,7 +586,7 @@ int main(int argc, char* argv[])
 		return 0;
 	}
 
-	BOOL Result = MiniDumpWriteDumpA(hProc, GetProcessId(hProc), hFile);
+	BOOL Result = MiniDumpWriteDumpA(hProc, pid, hFile);
 
 	NtClose(hFile);
 
